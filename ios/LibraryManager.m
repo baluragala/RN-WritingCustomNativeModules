@@ -12,14 +12,21 @@
 
 @import MobileCoreServices; 
 
+
+@interface LibraryManager ()
+
+@property (nonatomic, strong) RCTResponseSenderBlock callback;
+
+@end
+
 @implementation LibraryManager
 
 RCT_EXPORT_MODULE();
 
-
-RCT_EXPORT_METHOD(selectImage)
+RCT_EXPORT_METHOD(selectImage:(RCTResponseSenderBlock)callback)
 {
   RCTLogInfo(@"Selecting image...");
+  self.callback = callback;
   
   UIImagePickerController *picker = [[UIImagePickerController alloc]  init];
   
@@ -45,6 +52,8 @@ RCT_EXPORT_METHOD(selectImage)
   NSString *filePath = [fileURL absoluteString];
   
   RCTLog(@"%@", filePath);
+  
+  self.callback(@[filePath]);
   
   [picker dismissViewControllerAnimated:YES completion:nil];
 }
