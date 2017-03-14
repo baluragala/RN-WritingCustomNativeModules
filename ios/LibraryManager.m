@@ -8,8 +8,16 @@
 
 #import "LibraryManager.h"
 
+#import "React/RCTLog.h"
+
 @implementation LibraryManager
 
 RCT_EXPORT_MODULE();
+
+
+RCT_EXPORT_METHOD(selectImage)
+{
+  RCTLogInfo(@"Selecting image...");
+}
 
 @end
