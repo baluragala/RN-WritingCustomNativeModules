@@ -4,13 +4,18 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  NativeModules
 } from 'react-native';
+
+const {LibraryManager} = NativeModules;
+
+console.log(NativeModules)
 
 export default class WritingCustomNativeModules extends Component {
   render() {
