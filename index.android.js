@@ -9,9 +9,12 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Button,
   View,
+  TouchableOpacity,
   NativeModules
 } from 'react-native';
+import * as globalStyles from './style.global';
 
 const {LibraryManager} = NativeModules;
 
@@ -20,17 +23,13 @@ console.log(LibraryManager);
 export default class WritingCustomNativeModules extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View style={[globalStyles.COMMON_STYLES.pageContainer, styles.container]}>
+        <Button
+          onPress={() => LibraryManager.selectImage()}
+          title="Select Image"
+          color="#841584"
+          accessibilityLabel="Click to load image"
+        />
       </View>
     );
   }
@@ -38,21 +37,9 @@ export default class WritingCustomNativeModules extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    alignItems: 'center'
+  }
 });
 
 AppRegistry.registerComponent('WritingCustomNativeModules', () => WritingCustomNativeModules);
